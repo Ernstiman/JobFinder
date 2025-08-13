@@ -5,27 +5,27 @@ import { useState } from 'react'
 
 export default function useGetMunicipality(county){
 
-    const [municipality, setMunicipality] = useState();
-    const [loadingMunicipality, setLoadingMunicipality] = useState();
+    const [municipalities, setMunicipalities] = useState();
+    const [loadingMunicipalities, setLoadingMunicipalities] = useState();
 
     useEffect(() => {
 
-        setLoadingMunicipality(true);
+        setLoadingMunicipalities(true);
         fetch('/svenska-stader.csv').then(response => {
             response.text().then(text => Papa.parse(text, {
                 header: true,
                 complete: (result => {
                     const filteredData = result.data.filter(row => row.County === county);
-                    console.log(filteredData, "filteredData");
                     const data = Array.from(new Set(filteredData.map(row => row.Municipality))).filter(Boolean);
-                    setMunicipality(data);
+                    setMunicipalities(data);
                 })
             }))
         })
         .finally(() => {
-            setLoadingMunicipality(false);
+            setLoadingMunicipalities(false);
         })
 
     }, [county])
-    return {municipality, loadingMunicipality}
+    
+    return {municipalities, loadingMunicipalities}
 }

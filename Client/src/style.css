@@ -1,0 +1,63 @@
+:root{
+    --selector-width: 300px;
+    --selector-height: 500px;
+}
+
+
+.location-selector-container {
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+}
+
+.municipality-list-container {
+    max-height: 100%;
+    overflow-y: auto;
+    width: var(--selector-width)
+}
+
+.county-list-container {
+    width: var(--selector-width)
+}
+
+.occupation-selector-container {
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+}
+
+.occupation-field-list-container {
+    width: var(--selector-width)
+}
+
+.toggler-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.occupation-group-list-container {
+    max-height: 100%;
+    overflow-y: auto;
+    width: var(--selector-width)
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.job-item {
+    border: 1px solid #000000;
+}
+
+.job-ad-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
