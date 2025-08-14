@@ -26,7 +26,7 @@ export default function App() {
       return []
     }
   });
-  
+
   useEffect(() => {
     localStorage.setItem("jobs", JSON.stringify(foundJobs))
   }, [foundJobs])
