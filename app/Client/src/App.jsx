@@ -15,13 +15,14 @@ export const MainContext = React.createContext();
 export default function App() {
   const[selectedOccupations, setSelectedOccupations] = useState([]);
   const[selectedMunicipalities, setSelectedMunicipalities] = useState([]);
-  const[searchValue, setSearchValue] = useState("")
+  const[searchValue, setSearchValue] = useState([])
   const[selectedJobAds, setSelectedJobAds] = useState([]);
+  const[selectedFilters, setSelectedFilters] = useState();
   const[foundJobs, setFoundJobs] = useState(() => {
-    let jobs = localStorage.getItem("jobs");
+    let jobs = sessionStorage.getItem("jobs");
     
     try{
-      return JSON.parse(jobs)
+      return JSON.parse(jobs) ? JSON.parse(jobs) : []
     }
     catch(e){
       return []
@@ -29,7 +30,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("jobs", JSON.stringify(foundJobs))
+    sessionStorage.setItem("jobs", JSON.stringify(foundJobs))
   }, [foundJobs])
 
   return (
@@ -43,7 +44,9 @@ export default function App() {
       foundJobs,
       setFoundJobs,
       selectedJobAds,
-      setSelectedJobAds
+      setSelectedJobAds,
+      selectedFilters,
+      setSelectedFilters
       }}>
       <Router>
       <Routes>

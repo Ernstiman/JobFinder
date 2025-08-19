@@ -1,17 +1,19 @@
 import { useContext } from "react"
-import {fetchTaxologyMunicipalities, fetchTaxologySSYK} from "../api/fetchTaxology"
+import {fetchTaxologyMunicipalities, fetchTaxologySSYK, fetchTaxonomyDuration} from "../api/fetchTaxology"
 import { MainContext } from "../App"
 import fetchJobSearch from "../api/fetchJobSearch"
 
 export default function SubmitButton(){
-    const {selectedMunicipalities, selectedOccupations, setFoundJobs} = useContext(MainContext)
+    const {selectedMunicipalities, selectedOccupations, setFoundJobs, searchValue, selectedFilters} = useContext(MainContext)
 
     async function click(){
+        console.log(selectedFilters, "selected")
+        let durationId = "";
         const lauCodes = await fetchTaxologyMunicipalities(selectedMunicipalities);
         const ssykCodes = await fetchTaxologySSYK(selectedOccupations);
-        const foundJobs = await fetchJobSearch({lauCodes, ssykCodes});
+        if(selectedFilters) durationId = await fetchTaxonomyDuration(selectedFilters)
+        const foundJobs = await fetchJobSearch({lauCodes, ssykCodes, searchValue, durationId});
         setFoundJobs(foundJobs);
-        console.log(foundJobs[0]);
     }
 
     return (

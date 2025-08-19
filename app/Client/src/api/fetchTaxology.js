@@ -26,3 +26,14 @@ export async function fetchTaxologySSYK(selectedOccupations){
     const ssykCodes = filtered_data.map(elem => elem["taxonomy/ssyk-code-2012"])
     return ssykCodes;
 }
+
+export async function fetchTaxonomyDuration(jobDuration){
+    const response = await fetch(`https://taxonomy.api.jobtechdev.se/v1/taxonomy/main/concepts?preferred-label=${jobDuration}`,{
+        headers: {
+            accept: 'application/json'
+        }}
+    )
+    const data = await response.json();
+    const durationId = data.map(elem => elem["taxonomy/id"]);
+    return durationId;
+}

@@ -8,6 +8,7 @@ import SubmitButton from '../components/SubmitButton';
 import FoundJobsList from '../components/FoundJobsList';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import JobLetterGenerator from '../components/JobLetterGeneretor';
+import FilterList from '../components/FilterList';
 
 export default function MainPage() {
 
@@ -20,13 +21,10 @@ export default function MainPage() {
       <div className='search-container'>
         <Search/>
       </div>
-      <div className='toggler-container'>
-      <div className='ort-container'>
+      <div className='filter-container'>
       <OrtToggler/>
-      </div>
-      <div className='occupation-container'>
       <OccupationToggle/>
-      </div>
+      <FilterList/>
       </div>
       <SubmitButton/>
       <div className="found-ads-container">

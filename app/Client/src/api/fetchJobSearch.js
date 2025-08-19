@@ -7,11 +7,16 @@ export default async function fetchJobSearch(params){
         let query = []
         switch(key){
             case 'lauCodes':
-                console.log("hej")
                 query = 'municipality';
                 break
             case 'ssykCodes':
                 query = 'occupation-group';
+                break
+            case 'searchValue':
+                query = 'q';
+                break
+            case 'durationId':
+                query = 'employment-type'
                 break
             default :
                 query = "";

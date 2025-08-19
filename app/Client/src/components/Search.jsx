@@ -9,7 +9,7 @@ export default function Search(){
 
     return (
         <label htmlFor="search">
-            <input type="text" name="search" id="search" value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
+            <input type="text" name="search" id="search" value={searchValue} onChange={(e) => setSearchValue([e.target.value])}/>
         </label>
     )
 }
