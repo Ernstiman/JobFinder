@@ -21,21 +21,15 @@ export const getLetter = async (req, res) => {
 }
 
 export const downloadLetter = async (req, res) => {
-    const letters = req.body.letters;
+    const letter = req.body.letter;
 
-    res.setHeader("Content-type", "application/zip")
-    res.setHeader("Content-Disposition", "attachment; filename=letters.zip");
+    res.setHeader("Content-type", "application/png")
+    res.setHeader("Content-Disposition", "attachment; filename=hej.png");
 
-    const archive = archiver("zip", {zlib: { level: 9}});
-    archive.pipe(res)
+    const doc = new PDFDocument();
 
-    for (let record of letters){
-        const doc = new PDFDocument();
-        archive.append(doc, {name: `Personlig Brev: ${record.ad.employer.name}.pdf`})
-    
-        doc.fontSize(12).text(record.letter)
-        doc.end();
+    doc.pipe(res)
+    doc.fontSize(12).text(letter)
+    doc.end();
+        
     }
-    archive.finalize();
-    
-}

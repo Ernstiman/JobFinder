@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import MainPage from './Routes/MainPage';
 import JobAdPage from './Routes/JobAdPage';
 import { useEffect } from 'react';
+import AdLetterPage from './adLetterPage';
 
 export const MainContext = React.createContext();
 
@@ -18,6 +19,8 @@ export default function App() {
   const[searchValue, setSearchValue] = useState([])
   const[selectedJobAds, setSelectedJobAds] = useState([]);
   const[selectedFilters, setSelectedFilters] = useState();
+  const[adLetters, setAdLetters] = useState([]);
+  const[loading, setLoading] = useState(false);
   const[foundJobs, setFoundJobs] = useState(() => {
     let jobs = sessionStorage.getItem("jobs");
     
@@ -46,12 +49,17 @@ export default function App() {
       selectedJobAds,
       setSelectedJobAds,
       selectedFilters,
-      setSelectedFilters
+      setSelectedFilters,
+      adLetters,
+      setAdLetters,
+      loading, 
+      setLoading
       }}>
       <Router>
       <Routes>
         <Route path={"/main"} element={<MainPage/>}/>
         <Route path={"/ad/:adID"} element={<JobAdPage/>}/>
+        <Route path={"/AdLetterPage"} element={<AdLetterPage/>}/>
         <Route path={"/"} element={<MainPage/>}/>
       </Routes>
     </Router>
