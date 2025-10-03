@@ -1,15 +1,11 @@
-import OrtToggler from './components/OrtToggler';
-import OccupationToggle from './components/OccupationToggle';
-import Search from './components/Search';
+
 import React from 'react';
 import { useState } from 'react';
-import SubmitButton from './components/SubmitButton';
-import FoundJobsList from './components/FoundJobsList';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import MainPage from './Routes/MainPage';
-import JobAdPage from './Routes/JobAdPage';
+import MainPage from './Routes/MainPage.jsx';
+import JobAdPage from './Routes/JobAdPage.jsx';
 import { useEffect } from 'react';
-import AdLetterPage from './adLetterPage';
+import AdLetterPage from './AdLetterPage.jsx';
 
 export const MainContext = React.createContext();
 

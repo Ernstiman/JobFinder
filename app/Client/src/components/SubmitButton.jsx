@@ -11,7 +11,7 @@ export default function SubmitButton(){
         let durationId = "";
         const lauCodes = await fetchTaxologyMunicipalities(selectedMunicipalities);
         const ssykCodes = await fetchTaxologySSYK(selectedOccupations);
-        if(selectedFilters) durationId = await fetchTaxonomyDuration(selectedFilters)
+        if(selectedFilters) durationId = await fetchTaxonomyDuration(selectedFilters) // Sommarjobb
         const foundJobs = await fetchJobSearch({lauCodes, ssykCodes, searchValue, durationId});
         setFoundJobs(foundJobs);
     }
