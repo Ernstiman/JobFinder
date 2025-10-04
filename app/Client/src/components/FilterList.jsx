@@ -5,13 +5,19 @@ import { useEffect } from "react";
 
 export default function FilterList(){
 
-    const{selectedFilters, setSelectedFilters} = useContext(MainContext);
+    const{selectedFilters, setSelectedFilters, openFilter, setOpenFilter} = useContext(MainContext);
     const[showFilter, setShowFilter] = useState(false);
     const[selectedJobDuration, setSelectedJobDuration] = useState();
 
     useEffect(() => {
         setSelectedFilters(selectedJobDuration)
     }, [selectedJobDuration])
+
+    useEffect(() => {
+          if(openFilter != "filter"){
+            setShowFilter(false);
+          }
+        }, [openFilter]);
 
     function handleCheck(e){
         const value = e.target.value;
@@ -23,14 +29,18 @@ export default function FilterList(){
             ""
         })
     }
+
+     function clickFilter(){
+      setOpenFilter("filter");
+      setShowFilter(!showFilter);
+      
+    }
     return (
         <Overlay showState={showFilter} setState={setShowFilter}>
-            <button onClick={() => setShowFilter(!showFilter)}>Filter {showFilter ? "▲" : "▼"}</button>
+            <button onClick={clickFilter}>Filter {showFilter ? "▲" : "▼"}</button>
             
-            {showFilter && <div className="filter-list-container">
-                <fieldset>
-                <legend></legend>
-                    
+            {showFilter && 
+            <div className="dropdown-menu">
                 <h3 className="filter-list-header">Omfattning</h3>
                 <ul>
                     <li>
@@ -44,10 +54,7 @@ export default function FilterList(){
                         </label>
                     </li>
                 </ul>
-                </fieldset>
             </div>}
-            
-
         </Overlay>
     )
 }

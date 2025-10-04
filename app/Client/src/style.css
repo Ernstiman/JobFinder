@@ -1,0 +1,60 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app-container{
+    display: grid;
+    row-gap: 10px;
+    grid-template-rows: repeat(2, 1fr);
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: black;
+    border-radius: 2px;
+    
+}
+
+.filter-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter-columns{
+    position: relative;
+}
+
+.dropdown-menu{
+    position:absolute;
+    max-height: 300px;
+    overflow-y: scroll;
+    white-space: nowrap;
+    transition: transform, 3s;
+}
+
+.dropdown-menu-columns{
+    display: flex;
+    gap: 50px;
+    white-space: nowrap; /*Gör så att ingen text går vidare ner på nästa rad*/
+}
+
+.dropdown-menu.open{
+    pointer-events:auto;
+    animation: slide-down;
+}
+
+@keyframes slide-down{
+    0%{
+        transform: translateY(0px);
+    }
+    100%{
+        transform: translateY(40px);
+    }
+}
+
+
+
+

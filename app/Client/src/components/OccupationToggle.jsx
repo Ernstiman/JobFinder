@@ -4,8 +4,9 @@ import React from "react";
 import OccupationFieldList from "./OccupationFieldList";
 import OccupationGroupList from "./OccupationGroupList";
 import useGetMenuRef from "../hooks/useGetManuRef";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Overlay from "./Overlay";
+import { MainContext } from "../App";
 
 export const OccupationContext = React.createContext();
 
@@ -13,30 +14,38 @@ export const OccupationContext = React.createContext();
 export default function OccupationToggle(){
     const [selectedOccupationField, setSelectedOccupationField] = useState()
     const [showOccupations, setShowOccupations] = useState()
+    const {openFilter, setOpenFilter} = useContext(MainContext);
     
+    function clickFilter(){
+      setOpenFilter("occupation");
+      setShowOccupations(!showOccupations);
+      
+    }
+
+    useEffect(() => {
+        if(openFilter != "occupation"){
+            setShowOccupations(false);
+        }
+    }, [openFilter]);
 
     return(
         <OccupationContext.Provider value={{selectedOccupationField, setSelectedOccupationField}}>
             <Overlay showState={showOccupations} setState={setShowOccupations}>
-            <div className='occupation-container'>
-            <button onClick={() => setShowOccupations(!showOccupations)}>Yrken {showOccupations ? "▲" : "▼"} </button>
+            
+            <button onClick={clickFilter}>Yrken {showOccupations ? "▲" : "▼"} </button>
            {showOccupations && 
-           <div className="occupation-selector-container">
-                <fieldset>
-                    <legend></legend>
+           <div className="dropdown-menu"> 
+                <div className="dropdown-menu-columns">              
                     <div className="occupation-field-list-container">
                         <OccupationFieldList/>
                     </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend></legend>
+                
                     <div className="occupation-group-list-container">
                         <OccupationGroupList/>
-                    </div>
-                </fieldset>
-            </div>}
+                    </div>   
+                </div>           
             </div>
+            }
             </Overlay>
         </OccupationContext.Provider>
 
