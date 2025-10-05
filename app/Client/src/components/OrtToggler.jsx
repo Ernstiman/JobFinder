@@ -33,8 +33,7 @@ export default function OrtToggler(){
     <OrtToggleContext.Provider value={{selectedCounty, setSelectedCounty, showCounty, setShowCounty}}>
     <Overlay showState={showCounty} setState={setShowCounty}>    
     <button onClick={clickFilter}>Ort {showCounty ? "▲" : "▼"}</button>
-     {showCounty && 
-     ( <div className={`dropdown-menu${showCounty ? " open" : ""}`}>
+     <div className={`dropdown-menu${showCounty ? " open" : ""}`}>
         <div className="dropdown-menu-columns">
           <div className='county-list-container' >
             <CountyList/>
@@ -44,8 +43,6 @@ export default function OrtToggler(){
           </div>
         </div>
       </div>
-     )}
-     
      </Overlay>  
     
     </OrtToggleContext.Provider>

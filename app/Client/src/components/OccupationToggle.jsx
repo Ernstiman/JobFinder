@@ -31,10 +31,8 @@ export default function OccupationToggle(){
     return(
         <OccupationContext.Provider value={{selectedOccupationField, setSelectedOccupationField}}>
             <Overlay showState={showOccupations} setState={setShowOccupations}>
-            
             <button onClick={clickFilter}>Yrken {showOccupations ? "▲" : "▼"} </button>
-           {showOccupations && 
-           <div className="dropdown-menu"> 
+           <div className={`dropdown-menu ${showOccupations ? 'open' : ''}`}> 
                 <div className="dropdown-menu-columns">              
                     <div className="occupation-field-list-container">
                         <OccupationFieldList/>
@@ -45,7 +43,6 @@ export default function OccupationToggle(){
                     </div>   
                 </div>           
             </div>
-            }
             </Overlay>
         </OccupationContext.Provider>
 

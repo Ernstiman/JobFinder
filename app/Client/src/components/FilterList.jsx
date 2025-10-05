@@ -37,10 +37,11 @@ export default function FilterList(){
     }
     return (
         <Overlay showState={showFilter} setState={setShowFilter}>
-            <button onClick={clickFilter}>Filter {showFilter ? "▲" : "▼"}</button>
-            
-            {showFilter && 
-            <div className="dropdown-menu">
+            <button onClick={clickFilter}>Filter 
+                <span className={`filterSpan ${showFilter ? "rotated" : ""}`}>▼</span>
+            </button>
+            <div className={`dropdown-menu ${showFilter? "open": ''}`}>
+                <div className="dropdown-menu-columns">
                 <h3 className="filter-list-header">Omfattning</h3>
                 <ul>
                     <li>
@@ -54,7 +55,8 @@ export default function FilterList(){
                         </label>
                     </li>
                 </ul>
-            </div>}
+                </div>
+            </div>
         </Overlay>
     )
 }
