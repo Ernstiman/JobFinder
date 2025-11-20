@@ -7,7 +7,6 @@ export default function useGetMenuRef(){
     const [show, setShow] = useState(true);
     useEffect(() => {
         function handleMouseDown(e){
-            console.log("hej")
             if(menuRef.current){
                 setShow(menuRef.current.contains(e.target));
             }

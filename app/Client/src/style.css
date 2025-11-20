@@ -40,7 +40,7 @@
     transform: translateY(-100%);
     transition: transform 0.3s;
     display: flex;
-    background-color: green;
+    background-color: rgb(255, 0, 0);
     gap: 50px;
     white-space: nowrap; /*Gör så att ingen text går vidare ner på nästa rad*/
 }
@@ -72,6 +72,20 @@ the + means a sibling that comes directly after */
 
 .dropdown-menu.open .dropdown-menu-columns{
     transform: translateY(0px);
+}
+
+.menu-button{
+    width: 100%;
+    background: none;
+    border: none;
+}
+
+.menu-button.active{
+    background-color: green;
+}
+
+.menu-button:hover{
+    background-color: blue;
 }
 
 @keyframes slide-down{

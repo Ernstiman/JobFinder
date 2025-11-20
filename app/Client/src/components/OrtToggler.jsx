@@ -11,12 +11,12 @@ export default function OrtToggler(){
     const [selectedCounty, setSelectedCounty] = useState();
     const [showCounty, setShowCounty] = useState(false);
     const {openFilter, setOpenFilter} = useContext(MainContext);
+    const [activeCounties, setActiveCounties] = useState([]);
 
     function clickFilter(){
       setOpenFilter("ort");
       setShowCounty(!showCounty); //If the menu is open then it will close
       const elements = document.getElementsByClassName("dropdown-menu ort");
-      console.log(elements);
       for(let elem of elements){ // Ads open to the elements class list
         elem.classList.add("open");
       }
@@ -30,7 +30,9 @@ export default function OrtToggler(){
   
     return (
     
-    <OrtToggleContext.Provider value={{selectedCounty, setSelectedCounty, showCounty, setShowCounty}}>
+    <OrtToggleContext.Provider value={{selectedCounty, setSelectedCounty, showCounty, setShowCounty,
+      activeCounties, setActiveCounties 
+    }}>
     <Overlay showState={showCounty} setState={setShowCounty}>    
     <button onClick={clickFilter}>Ort {showCounty ? "▲" : "▼"}</button>
      <div className={`dropdown-menu${showCounty ? " open" : ""}`}>

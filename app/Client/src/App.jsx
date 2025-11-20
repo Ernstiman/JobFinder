@@ -15,6 +15,7 @@ export default function App() {
   // The selected municipalities in a array
   const[selectedMunicipalities, setSelectedMunicipalities] = useState([]);
   // The value in the search bar
+
   const[searchValue, setSearchValue] = useState([])
   // The job-ads that have been selected
   const[selectedJobAds, setSelectedJobAds] = useState([]);
@@ -57,7 +58,7 @@ export default function App() {
       adLetters,
       setAdLetters,
       loading, 
-      setLoading
+      setLoading,
       }}>
       <Router>
       <Routes>
